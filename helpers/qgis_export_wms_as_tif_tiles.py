@@ -3,22 +3,32 @@ from qgis.core import QgsProject, QgsMapSettings, QgsMapRendererParallelJob, Qgs
 from PyQt5.QtCore import QSize
 import time
 
-# Define the output folder
-output_folder = "/home/tfc/Desktop/2022/temp2"
+'''
+Automates image export from QGIS for EOX cloudless Sentinel-2 map.
+Note: Clip raster by mask layer does not work for WMS maps
+'''
+
+## INPUT
+output_folder = "data/daysat/2022/"          # Define output folder
+shape_name = "phil_2022_extends_epsg4326"    # Define shape name for clipping image tiles from map
+map_name = "Sentinel-2 cloudless layer for 2022 by EOX - 4326"      # Define name of Sentinel-2 map layer loaded in QGIS
 
 # Create output folder if it does not exist
 if not os.path.exists(output_folder):
     os.makedirs(output_folder)
 
 # Load the vector layer defining extents
-extent_layer = QgsProject.instance().mapLayersByName("phil_2022_extents_epsg4326")[0]
+extent_layer = QgsProject.instance().mapLayersByName(shape_name)[0]
+
+# Load raster layer of EOX cloudless Sentinel-2 basemap via WMS
+sentinel2_layer = QgsProject.instance().mapLayersByName(map_name)[0]
+
 
 # Prepare the QGIS map settings
 def setup_map_settings():
     map_settings = QgsMapSettings()
-    layers = [layer for layer in QgsProject.instance().mapLayers().values() if layer.isValid()]
-    map_settings.setLayers([layers[0]])
-    map_settings.setOutputSize(QSize(240, 240))
+    map_settings.setLayers([sentinel2_layer])
+    map_settings.setOutputSize(QSize(240, 240)) # Setting output at 240 by 240 pixels
     return map_settings
 
 map_settings = setup_map_settings()
@@ -32,7 +42,7 @@ def export_feature(feature):
         output_file = os.path.join(output_folder, f"map_{feature.id()}.tif")
 
         # Adjust output size based on extent
-        map_settings.setOutputSize(QSize(240, 240))
+        map_settings.setOutputSize(QSize(240, 240)) # Setting output at 240 by 240 pixels
 
         # Render the map
         render_job = QgsMapRendererParallelJob(map_settings)
@@ -42,7 +52,7 @@ def export_feature(feature):
         image = render_job.renderedImage()
         image.save(output_file,"tif")
 
-        print(f"Exported {output_file}")
+#         print(f"Exported {output_file}")
     except Exception as e:
         print(f"Failed to export feature {feature.id()}: {e}")
 
