@@ -9,9 +9,9 @@ Note: Clip raster by mask layer does not work for WMS maps
 '''
 
 ## INPUT
-output_folder = "data/daysat/2022/"          # Define output folder
-shape_name = "phil_2022_extents_epsg4326"    # Define shape name for clipping image tiles from map
-map_name = "Sentinel-2 cloudless layer for 2022 by EOX - 4326"      # Define name of Sentinel-2 map layer loaded in QGIS
+output_folder = "data/daysat/2023_grid/"          # Define output folder
+shape_name = "grid_phil_2023_extents_epsg4326"    # Define shape name for clipping image tiles from map
+map_name = "Sentinel-2 cloudless layer for 2023 by EOX - 4326"      # Define name of Sentinel-2 map layer loaded in QGIS
 
 # Create output folder if it does not exist
 if not os.path.exists(output_folder):
