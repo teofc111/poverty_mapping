@@ -60,3 +60,8 @@ Manipulating and extracting geospatial data necessitates familiarity with variou
 Computer vision techniques (Vision Transformer, ViT) were used to extract relevant wealth related information from satellite images, while Gradient Boosting Machines (GBM) were used to map poverty levels. This is the main goal of such projects, which can dramatically increase response time and reduce costs (surveys can cost up to [1.5M USD](https://aiforsocialgood.github.io/icml2019/accepted/track1/pdfs/7_aisg_icml2019.pdf)).
 
 ![Poverty Mapping Coverage Comparison](assets/poverty_mapping_illustration.png)
+
+### Impact Evaluation
+Wealth and poverty mapping can be utilized to assess the effectiveness of public policies and programs aimed at poverty alleviation. The PPPP serves only as an illustrative example in this context. However, impact evaluation is inherently complex and requires multifaceted considerations. The evaluation presented here is overly simplistic, as it does not account for factors like the effects of COVID-19, natural disasters, or political turmoil. __Any conclusions drawn should be considered illustrative rather than definitive__.
+
+![Impact Evaluation of PPPP](assets/pppp_to_wealth.png)
