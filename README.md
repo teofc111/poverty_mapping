@@ -5,7 +5,9 @@ Geographical data from satellite imagery and other mapping sources are rich in i
 
 __In this project, we adopt, expand, and explore past methodology for poverty mapping as a means to evaluating public policy effectiveness__.
 
-Here, we focus on the assessment of the Pantawid Pamilyang Program Pilipino (PPPP), a flagship program of the Philippine government to address the poverty situation in the country. A proper
+Here, we focus on the assessment of the Pantawid Pamilyang Program Pilipino (PPPP), a flagship program of the Philippine government to address the poverty situation in the country.
+
+__The author wishes to emphasize that this is an academic exercise aimed at demonstrating how machine learning approaches can be integrated into policy impact evaluation. The analysis presented is intentionally simplistic, and any conclusions drawn should be considered illustrative rather than definitive.__
 
 ## Data
 This project makes use of __Geo-Temporal data__ including:
@@ -28,6 +30,8 @@ The work is presented in three notebooks:
 
 3. `poverty_mapping_pppp.ipynb` - This is the current notebook. This notebook focuses on building the model using the data gathered in `data_sat_img_map_feat.ipynb` above. The poverty levels for the entire country from 2020 to 2023 is mapped using the final model here. The mapped poverty values are analysed in the context of the 'PPPP effort' derived from `data_pppp_PI_geobounds.ipynb` above, to assess the effectiveness of the PPPP in alleviating poverty.
 
+It is recommended to read/run them in the order given above.
+
 #### Setup: `data_sat_img_map_feat.ipynb`
 
 We use ThinkingMachines codes heavily (with minor adaptations) in this notebook. As the ThinkingMachines codes appear to rely on older versions of certain packages, we recommend isolating the environment used for this notebook from the environment used for the other notebooks. The requirements are given in `requirements_TM.txt`. To install the required ThinkingMachine codes:
@@ -47,12 +51,12 @@ Extracting tables from PDFs presents inherent challenges due to inconsistent for
 
 ![PDF Table Extraction](assets/pdf_table_illustration.png)
 
-### Geodata Extraction
-Manipulating and extracting geospatial data necessitates familiarity with various GIS techniques and methods, such as knowledge of coordinate reference systems (CRS), open-source tools, and datasets. In this context, we gather and integrate information on population (High Resolution Settlement Layer), nightlight data (Earth Observation System), internet and mobile usage (OOKLA), public amenities (OpenStreetMap), daytime satellite imagery (EOX Sentinel-2 via QGIS WMS), and PPPP enrollment rates, among other sources.
+### Geodata Extraction and Consolidation
+Manipulating and extracting geospatial data necessitates familiarity with various GIS techniques and methods, such as knowledge of coordinate reference systems (CRS), open-source tools, and datasets. In this context, we gather and integrate information on population (High Resolution Settlement Layer), nightlight data (Earth Observation System), internet and mobile usage (OOKLA), public amenities (OpenStreetMap), daytime satellite imagery (EOX Sentinel-2 via QGIS WMS), and PPPP enrollment rates, among other sources, translating them from tabular to geo-data.
 
-![Geographical Data Visualization and Manipulation](assets/geodata_illustration.png)
+![Geodata consolidation and visualization](assets/geoata_consolidation_visualization.png)
 
-### Machine and Deep Learning
+### Machine and Deep Learning for Poverty Mapping
 Computer vision techniques (Vision Transformer, ViT) were used to extract relevant wealth related information from satellite images, while Gradient Boosting Machines (GBM) were used to map poverty levels. This is the main goal of such projects, which can dramatically increase response time and reduce costs (surveys can cost up to [1.5M USD](https://aiforsocialgood.github.io/icml2019/accepted/track1/pdfs/7_aisg_icml2019.pdf)).
 
 ![Poverty Mapping Coverage Comparison](assets/poverty_mapping_illustration.png)
